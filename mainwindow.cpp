@@ -23,7 +23,10 @@ MainWindow::MainWindow(QWidget *parent)
     m_player->setVolume(70);
     ui->labelVolume->setText(QString("Volume: ").append(QString::number(m_player->volume())));
     ui->horizontalSliderVolume->setValue(m_player->volume());
-    qDebug() << m_player->duration();
+
+    // Connect:
+    connect(m_player, &QMediaPlayer::durationChanged, this, &MainWindow::on_duration_changed);
+    connect(m_player, &QMediaPlayer::positionChanged, this, &MainWindow::on_position_changed);
 }
 MainWindow::~MainWindow()
 {
@@ -31,6 +34,19 @@ MainWindow::~MainWindow()
     delete ui;
 }
 
+void MainWindow::on_duration_changed(qint64 duration)
+{
+    this->ui->horizontalSliderProgress->setMaximum(duration);
+    QTime q_time = QTime::fromMSecsSinceStartOfDay(duration);
+    ui->labelDuration->setText(QString("Duration: ").append(q_time.toString("hh:mm:ss")));
+}
+
+void MainWindow::on_position_changed(qint64 position)
+{
+    QTime q_time = QTime::fromMSecsSinceStartOfDay(position);
+    this->ui->labelProgress->setText(QString(QString(q_time.toString("hh:mm:ss"))));
+    this->ui->horizontalSliderProgress->setSliderPosition(position);
+}
 
 void MainWindow::on_pushButtonOpen_clicked()
 {
@@ -45,6 +61,7 @@ void MainWindow::on_pushButtonOpen_clicked()
     this->ui->labelFile->setText("File: " + file);
     this->setWindowTitle("MediaPlayerPD_321 - " + file.split('/').last());
     this->m_player->setMedia(QUrl::fromLocalFile(file));
+    // this->ui->labelDuration->setText(QString("Duration: ").append(QString::number(m_player->duration())));
 }
 
 
@@ -64,5 +81,8 @@ void MainWindow::on_pushButtonPause_clicked()
     m_player->pause();
 }
 
-
+void MainWindow::on_horizontalSliderProgress_sliderMoved(int position)
+{
+    this->m_player->setPosition(position);
+}
 
