@@ -129,8 +129,8 @@
     <property name="geometry">
      <rect>
       <x>390</x>
-      <y>50</y>
-      <width>121</width>
+      <y>60</y>
+      <width>111</width>
       <height>21</height>
      </rect>
     </property>
@@ -185,6 +185,53 @@
       <width>511</width>
       <height>171</height>
      </rect>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="pushButtonMute">
+    <property name="geometry">
+     <rect>
+      <x>480</x>
+      <y>50</y>
+      <width>31</width>
+      <height>21</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="pushButtonShuffle">
+    <property name="geometry">
+     <rect>
+      <x>420</x>
+      <y>340</y>
+      <width>61</width>
+      <height>21</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+    <property name="icon">
+     <iconset>
+      <normaloff>C:/Users/lxst/source/Qt/shuffle.ico</normaloff>C:/Users/lxst/source/Qt/shuffle.ico</iconset>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="pushButtonLoop">
+    <property name="geometry">
+     <rect>
+      <x>490</x>
+      <y>340</y>
+      <width>61</width>
+      <height>21</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+    <property name="icon">
+     <iconset>
+      <normaloff>C:/Users/lxst/source/Qt/loop_icon-icons.com_70926.ico</normaloff>C:/Users/lxst/source/Qt/loop_icon-icons.com_70926.ico</iconset>
     </property>
    </widget>
   </widget>

@@ -3,6 +3,7 @@
 #include "QFileDialog"
 #include <QStyle>
 #include <QTime>
+#include <QPaintDevice>
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
@@ -17,6 +18,9 @@ MainWindow::MainWindow(QWidget *parent)
     ui->pushButtonPause->setIcon(style()->standardIcon(QStyle::SP_MediaPause));
     ui->pushButtonStop->setIcon(style()->standardIcon(QStyle::SP_MediaStop));
     ui->pushButtonNext->setIcon(style()->standardIcon(QStyle::SP_MediaSkipForward));
+    ui->pushButtonMute->setIcon(style()->standardIcon(QStyle::SP_MediaVolumeMuted));
+    // *** Loop and Shuffle icons were downloaded from internet because of non-existence in Qt Creator library ***
+
 
     // Player init:
     m_player = new QMediaPlayer(this);
@@ -41,6 +45,7 @@ MainWindow::MainWindow(QWidget *parent)
 
     connect(this->ui->pushButtonPrev, &QPushButton::clicked, this->m_playlist, &QMediaPlaylist::previous);
     connect(this->ui->pushButtonNext, &QPushButton::clicked, this->m_playlist, &QMediaPlaylist::next);
+
 }
 MainWindow::~MainWindow()
 {
@@ -113,8 +118,19 @@ void MainWindow::on_pushButtonPause_clicked()
     m_player->pause();
 }
 
+void MainWindow::on_pushButtonMute_clicked()
+{
+   m_player->setVolume(0);
+   ui->horizontalSliderVolume->setSliderPosition(0);
+}
+
 void MainWindow::on_horizontalSliderProgress_sliderMoved(int position)
 {
     this->m_player->setPosition(position);
 }
+
+//void MainWindow::on_pushButtonLoop_clicked()
+//{
+
+//}
 

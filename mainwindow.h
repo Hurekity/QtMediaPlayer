@@ -31,8 +31,11 @@ private slots:
 
         void on_pushButtonPause_clicked();
 
-
         void on_horizontalSliderProgress_sliderMoved(int position);
+
+        void on_pushButtonMute_clicked();
+
+        void on_pushButtonLoop_clicked();
 
 private:
     Ui::MainWindow *ui;
